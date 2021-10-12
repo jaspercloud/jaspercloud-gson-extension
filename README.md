@@ -1,5 +1,5 @@
 # jaspercloud-gson-extension
-gson-extension
+gson-extension扩展复杂json的序列化和解析
 
 ``` json
 {
