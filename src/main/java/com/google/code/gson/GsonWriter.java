@@ -41,6 +41,12 @@ public class GsonWriter extends JsonWriter {
         endObject();
     }
 
+    public void createArray(JsonConsumer<GsonWriter> consumer) throws IOException {
+        beginArray();
+        consumer.accept(this);
+        endArray();
+    }
+
     public void addObject(String key, JsonConsumer<GsonWriter> consumer) throws IOException {
         name(key);
         beginObject();

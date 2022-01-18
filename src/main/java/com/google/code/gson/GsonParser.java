@@ -49,11 +49,17 @@ public class GsonParser {
         JsonField jsonField = iterator.next();
         if (jsonField instanceof JsonArrayField) {
             JsonArrayField jsonArrayField = (JsonArrayField) jsonField;
-            JsonObject jsonObject = element.getAsJsonObject();
-            if (!jsonObject.has(jsonArrayField.getName())) {
-                return Optional.empty();
+            String name = jsonArrayField.getName();
+            JsonArray jsonArray;
+            if (null != name) {
+                JsonObject jsonObject = element.getAsJsonObject();
+                if (!jsonObject.has(name)) {
+                    return Optional.empty();
+                }
+                jsonArray = jsonObject.get(jsonArrayField.getName()).getAsJsonArray();
+            } else {
+                jsonArray = (JsonArray) element;
             }
-            JsonArray jsonArray = jsonObject.get(jsonArrayField.getName()).getAsJsonArray();
             if (jsonArrayField.getIndex() >= jsonArray.size()) {
                 return Optional.empty();
             }

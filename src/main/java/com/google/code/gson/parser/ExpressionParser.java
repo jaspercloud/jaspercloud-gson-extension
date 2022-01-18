@@ -1,5 +1,7 @@
 package com.google.code.gson.parser;
 
+import com.google.gson.JsonParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,19 @@ public class ExpressionParser {
         List<String> list = parseToken();
         while (i < list.size()) {
             String field = list.get(i);
-            if (i + 3 < list.size()) {
+            if (0 == i && "[".equals(field)) {
+                //root array
+                String l = list.get(i + 0);
+                String indexStr = list.get(i + 1);
+                String r = list.get(i + 2);
+                if ("[".equals(l) && "]".equals(r)) {
+                    int index = Integer.parseInt(indexStr);
+                    jsonFieldList.add(new JsonArrayField(null, index));
+                    i += 2;
+                } else {
+                    throw new JsonParseException(expression);
+                }
+            } else if (i + 3 < list.size()) {
                 String l = list.get(i + 1);
                 String indexStr = list.get(i + 2);
                 String r = list.get(i + 3);
