@@ -10,6 +10,9 @@
         <java.version>8</java.version>
     </properties>
 
+    <name>gson-extension</name>
+    <description>gson-extension</description>
+    <url>https://github.com/jaspercloud/jaspercloud-gson-extension</url>
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>

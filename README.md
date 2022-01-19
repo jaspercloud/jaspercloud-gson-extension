@@ -1,6 +1,14 @@
 # jaspercloud-gson-extension
 gson-extension扩展 复杂json的序列化和解析
 
+``` xml
+<dependency>
+    <groupId>io.github.jaspercloud</groupId>
+    <artifactId>gson-extension</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+
 ``` json
 {
     "id":1,
