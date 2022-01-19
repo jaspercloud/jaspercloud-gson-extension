@@ -43,5 +43,23 @@ writer.createObject(obj -> {
 ``` java
 GsonParser jsonParser = new GsonParser(writer.build());
 Optional<JsonElement> optional = jsonParser.parse("data.list[4].test[3]");
-System.out.println();
+```
+#### 1.2.0版本 支持root为array
+``` json
+[1, 2, 3, {
+	"name": "test",
+	"age": "18"
+}]
+```
+``` java
+GsonWriter writer = new GsonWriter();
+writer.createArray(obj -> {
+    obj.value(1).value(2).value(3);
+    obj.createObject(e -> {
+        e.add("name", "test");
+        e.add("age", "18");
+    });
+});
+GsonParser jsonParser = new GsonParser(writer.build());
+String name = jsonParser.parse("[3].name").get().getAsString();
 ```
